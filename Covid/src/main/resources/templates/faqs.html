@@ -148,7 +148,7 @@
                                         <div class="card card-bordered">
                                             <div class="card-inner card-inner-lg">
                                             	<div style="margin-bottom: 3em;">
-                                                	<form th:action="@{/prevention/input}" method="post" th:object="${preventionModel}" enctype="multipart/form-data">      			
+                                                	<form th:action="@{/faqs}" method="post" th:object="${preventionModel}" enctype="multipart/form-data">      			
                                                 		<input th:field="*{title}" class="form-control no-resize" placeholder="Enter Title" style="margin-bottom: 3em;"/>
                                                 		<input th:field="*{description}" class="form-control no-resize" placeholder="Enter Description" style="margin-bottom: 3em;"/>                                        			
                                                 		<input th:name="file" class="form-control no-resize" type="file" placeholder="Enter Description" style="margin-bottom: 3em;"/>

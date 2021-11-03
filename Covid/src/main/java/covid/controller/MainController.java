@@ -92,7 +92,7 @@ public class MainController {
 		data.setImage("prevention-image/" + fileName);
 		this.preventionRepo.save(data);
 		
-		return "redirect:/prevention/input";
+		return "redirect:/faqs";
 	}
 	
 	@GetMapping("/prevention")
