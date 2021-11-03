@@ -147,10 +147,37 @@
                                     <div class="col-xl-8">
                                         <div class="card card-bordered">
                                             <div class="card-inner card-inner-lg">
+                                            	<div style="margin-bottom: 3em;">
+                                                	<form th:action="@{/prevention/input}" method="post" th:object="${preventionModel}" enctype="multipart/form-data">      			
+                                                		<input th:field="*{title}" class="form-control no-resize" placeholder="Enter Title" style="margin-bottom: 3em;"/>
+                                                		<input th:field="*{description}" class="form-control no-resize" placeholder="Enter Description" style="margin-bottom: 3em;"/>                                        			
+                                                		<input th:name="file" class="form-control no-resize" type="file" placeholder="Enter Description" style="margin-bottom: 3em;"/>
+								                        <div class="align-center justify-between mt-3">
+								                            <ul class="btn-toolbar g-1">
+								                                <li><Button class="btn btn-primary">Send</Button></li>
+								                            </ul>
+								                        </div>
+                                                	</form>
+                                                </div>
                                                 <h4>Common Question & Answer</h4>
                                                 <p>WHO is continuously monitoring and responding to this outbreak. This Q&A will be updated as more is known about COVID-19, how it spreads and how it is affecting people worldwide. For more information, check back regularly on WHO’s <a href="https://www.who.int/emergencies/diseases/novel-coronavirus-2019" target="_blank">coronavirus pages</a>.</p>
                                                 <h5 class="title text-dark mt-4 pt-sm-2 mb-3">Coronavirus Disease Basics</h5>
-                                                <div class="accordion accordion-s3">
+                                                <div class="accordion accordion-s3" th:each="model: ${listModel}">
+                                                	<div class="accordion-item">
+                                                        <a href="#" class="accordion-head collapsed" data-toggle="collapse" th:data-target="'#covid-basics-0' + ${model.id}">
+                                                            <h6 class="title" th:text="${model.title}"></h6>
+                                                            <span class="accordion-icon"></span>
+                                                        </a>
+                                                        <div th:id="'covid-basics-0' + ${model.id}" class="accordion-body collapse">
+                                                        	<div class="image image-lg" style="text-align: center;">
+                                                                <img th:src="@{${model.image}}" alt="" >
+                                                            </div>
+                                                            <div class="accordion-inner">
+                                                                <p th:text="${model.description}"></p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!--
                                                     <div class="accordion-item">
                                                         <a href="#" class="accordion-head collapsed" data-toggle="collapse" data-target="#covid-basics-01">
                                                             <h6 class="title">What is a novel coronavirus?</h6>
@@ -199,6 +226,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
+                                                    -->
                                                 </div>
                                                 <h5 class="title text-dark mt-4 pt-sm-2 mb-3">How It Spreds</h5>
                                                 <div class="accordion accordion-s3">

@@ -14,6 +14,11 @@
     <!-- StyleSheets  -->
     <link rel="stylesheet" href="../assets/css/dashlite.css?ver=2.2.0">
     <link id="skin-default" rel="stylesheet" href="../assets/css/theme.css?ver=2.2.0">
+    <style type="text/css">
+		.search-content .form-control {
+			padding-left: 0px !important;
+		}
+	</style>
 </head>
 
 <body class="nk-body npc-covid has-sidebar has-sidebar-short ui-clean ui-rounder">
@@ -195,21 +200,27 @@
                                                 <div class="card card-bordered card-full">
                                                     <div class="card-inner">
                                                         <div class="nk-cov-wg2">
+                                                        	<div class="search-content">
+                                                        		<form th:action="@{/index}">
+                                                                	<input type="text" name="country" class="form-control border-transparent form-focus-none" placeholder="Search by Country">
+                                                                	<button class="search-submit btn btn-icon"><em class="icon ni ni-search"></em></button>
+                                                        		</form>
+                                                            </div>
                                                             <div class="card-title">
-                                                                <h5 class="title">Coronavirus Cases - <small>Bangladesh</small></h5>
+                                                                <h5 class="title">Coronavirus Cases - <small th:text="${covidResponse.countryText}"></small></h5>
                                                             </div>
                                                             <div class="nk-cov-group">
                                                                 <div class="nk-cov-data">
                                                                     <h6 class="overline-title">Confirmed</h6>
-                                                                    <div class="amount amount-sm">48</div>
+                                                                    <div class="amount amount-sm" th:text="${covidResponse.totalCasesText}">48</div>
                                                                 </div>
                                                                 <div class="nk-cov-data">
                                                                     <h6 class="overline-title">Recovered</h6>
-                                                                    <div class="amount amount-sm text-success">15</div>
+                                                                    <div class="amount amount-sm text-success" th:text="${covidResponse.totalRecoveredText}">15</div>
                                                                 </div>
                                                                 <div class="nk-cov-data">
                                                                     <h6 class="overline-title">Deaths</h6>
-                                                                    <div class="amount amount-sm text-danger">5</div>
+                                                                    <div class="amount amount-sm text-danger"th:text="${covidResponse.totalDeathsText}">5</div>
                                                                 </div>
                                                             </div>
                                                             <div class="nk-cov-wg-note">The ratio of <a href="#">Recovery (31.3%)</a> &amp; <a href="#">Deaths (10.5%)</a>.</div>
@@ -560,13 +571,15 @@
                             </a>
                         </div>
                     </div>
-                    <form action="#">
-                        <textarea class="form-control no-resize" placeholder="Enter feedback here. To help protect your privacy, don’t include personal info."></textarea>
+                    <form method="post" th:action="@{/}" th:object="${postModel}">
+                    	<input th:field="*{title}" type="text" class="form-control border-transparent form-focus-none" placeholder="Input title">
+                    	<input th:field="*{body}" type="text" class="form-control border-transparent form-focus-none" placeholder="Input body">
+                    	<input th:field="*{userID}" type="text" class="form-control border-transparent form-focus-none" placeholder="Input userId">
                         <div class="align-center justify-between mt-3">
                             <a href="#" class="link link-sm">Privacy Policy</a>
                             <ul class="btn-toolbar g-1">
                                 <li><a href="#" class="btn btn-light">Go Back</a></li>
-                                <li><a href="#" class="btn btn-primary">Send</a></li>
+                                <li><button class="btn btn-primary">Send</button></li>
                             </ul>
                         </div>
                     </form>

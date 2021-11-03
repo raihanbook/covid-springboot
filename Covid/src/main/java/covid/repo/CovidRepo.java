@@ -10,5 +10,7 @@ import retrofit2.http.Path;
 public interface CovidRepo {
 	@GET("v1")
 	Call<List<CovidModel>> getAll();
+	
+	@GET("v1/{country}")
 	Call<CovidModel> getByCountry(@Path("country") String country);
 }

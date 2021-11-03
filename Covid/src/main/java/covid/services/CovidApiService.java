@@ -38,4 +38,18 @@ public class CovidApiService {
 		
 		return response.body();
 	}
+	
+	public CovidModel getCovidModel(String country) {
+		Call<CovidModel> getCovid = service.getByCountry(country);
+		Response<CovidModel> response = null;
+		
+		try {
+			response = getCovid.execute();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return response.body();
+	}
 }
